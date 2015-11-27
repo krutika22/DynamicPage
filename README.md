@@ -1,3 +1,0 @@
-# DynamicPage 
-# DynamicPage 
-# DynamicPage-master 
