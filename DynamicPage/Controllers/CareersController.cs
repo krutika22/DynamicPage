@@ -42,6 +42,7 @@ namespace DynamicPage.Controllers
                 HttpRuntime.Cache.Insert("Careers", dsPositions, new CacheDependency(xmlPositions), DateTime.Now.AddSeconds(60), System.Web.Caching.Cache.NoSlidingExpiration);
             }
 
+
             else
             {
                 dsTeamPlayers = (DataSet)HttpRuntime.Cache["Careers"];
