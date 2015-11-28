@@ -22,7 +22,7 @@ namespace DynamicPage.Controllers
 
 
             DataSet dsSliderImages = new DataSet();//Using dataset to read Slider-Images xml file 
-            string xmlSliderImages = Server.MapPath("~/App_Data/Slider-Images.xml");//Path of the xml script
+            string xmlSliderImages = Server.MapPath("~/App_Data/Slider-Images.xml"); //Path of the xml script
 
 
             DataSet dsPositions = new DataSet();//Using dataset to read Positions xml file 
