@@ -26,7 +26,7 @@ namespace DynamicPage.Controllers
 
 
             DataSet dsPositions = new DataSet();//Using dataset to read Positions xml file 
-            string xmlPositions = Server.MapPath("~/App_Data/Positions.xml");//Path of the xml 
+            string xmlPositions = Server.MapPath("~/App_Data/Positions.xml");//Path of the xml script
 
 
             // If the cache is empty read data from xml file and insert it into the cache else retrieve it from the cache
@@ -34,7 +34,7 @@ namespace DynamicPage.Controllers
             {
 
                 dsTeamPlayers.ReadXml(xmlData);
-                HttpRuntime.Cache.Insert("TeamPlayers", dsTeamPlayers, new CacheDependency(xmlData), DateTime.Now.AddSeconds(60), System.Web.Caching.Cache.NoSlidingExpiration);
+                HttpRuntime.Cache.Insert("TeamPlayers", dsTeamPlayers, new CacheDependency(xmlData), DateTime.Now.AddSeconds(120), System.Web.Caching.Cache.NoSlidingExpiration);
 
             }
             else
@@ -47,7 +47,7 @@ namespace DynamicPage.Controllers
             {
 
                 dsSliderImages.ReadXml(xmlSliderImages);
-                HttpRuntime.Cache.Insert("SliderImages", dsSliderImages, new CacheDependency(xmlSliderImages), DateTime.Now.AddSeconds(60), System.Web.Caching.Cache.NoSlidingExpiration);
+                HttpRuntime.Cache.Insert("SliderImages", dsSliderImages, new CacheDependency(xmlSliderImages), DateTime.Now.AddSeconds(120), System.Web.Caching.Cache.NoSlidingExpiration);
             }
             else
             {
@@ -59,7 +59,7 @@ namespace DynamicPage.Controllers
             {
 
                 dsPositions.ReadXml(xmlPositions);
-                HttpRuntime.Cache.Insert("Positions", dsPositions, new CacheDependency(xmlPositions), DateTime.Now.AddSeconds(60), System.Web.Caching.Cache.NoSlidingExpiration);
+                HttpRuntime.Cache.Insert("Positions", dsPositions, new CacheDependency(xmlPositions), DateTime.Now.AddSeconds(120), System.Web.Caching.Cache.NoSlidingExpiration);
             }
             else
             {
