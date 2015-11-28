@@ -12,6 +12,7 @@ namespace DynamicPage.ViewModel
 
         public List<SliderImages> SliderImages { get; set; }
 
+
         public List<Positions> Positions { get; set; }
     }
 }

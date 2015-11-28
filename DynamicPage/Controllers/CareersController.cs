@@ -15,7 +15,8 @@ namespace DynamicPage.Controllers
         // GET: Careers
         public ActionResult Careers()
         {
-     
+
+            CareersData viewModel = new CareersData(); // ViewModel object
             DataSet dsTeamPlayers = new DataSet();//Using dataset to read Team-Players xml file 
             string xmlData = Server.MapPath("~/App_Data/Team-Players.xml");//Path of the xml script
 
@@ -29,32 +30,43 @@ namespace DynamicPage.Controllers
 
 
             // If the cache is empty read data from xml file and insert it into the cache else retrieve it from the cache
-            if (HttpRuntime.Cache["Careers"] == null)
+            if (HttpRuntime.Cache["TeamPlayers"] == null)
             {
 
                 dsTeamPlayers.ReadXml(xmlData);
-                HttpRuntime.Cache.Insert("Careers", dsTeamPlayers, new CacheDependency(xmlData), DateTime.Now.AddSeconds(60), System.Web.Caching.Cache.NoSlidingExpiration);
+                HttpRuntime.Cache.Insert("TeamPlayers", dsTeamPlayers, new CacheDependency(xmlData), DateTime.Now.AddSeconds(60), System.Web.Caching.Cache.NoSlidingExpiration);
 
-                dsSliderImages.ReadXml(xmlSliderImages);
-                HttpRuntime.Cache.Insert("Careers", dsSliderImages, new CacheDependency(xmlSliderImages), DateTime.Now.AddSeconds(60), System.Web.Caching.Cache.NoSlidingExpiration);
-
-                dsPositions.ReadXml(xmlPositions);
-                HttpRuntime.Cache.Insert("Careers", dsPositions, new CacheDependency(xmlPositions), DateTime.Now.AddSeconds(60), System.Web.Caching.Cache.NoSlidingExpiration);
             }
-
-
             else
             {
-                dsTeamPlayers = (DataSet)HttpRuntime.Cache["Careers"];
+                 dsTeamPlayers = (DataSet)HttpRuntime.Cache["TeamPlayers"];
+            }
 
-                dsSliderImages = (DataSet)HttpRuntime.Cache["Careers"];
 
-                dsPositions = (DataSet)HttpRuntime.Cache["Careers"];
+            if (HttpRuntime.Cache["SliderImages"] == null)
+            {
 
+                dsSliderImages.ReadXml(xmlSliderImages);
+                HttpRuntime.Cache.Insert("SliderImages", dsSliderImages, new CacheDependency(xmlSliderImages), DateTime.Now.AddSeconds(60), System.Web.Caching.Cache.NoSlidingExpiration);
+            }
+            else
+            {
+                  dsSliderImages = (DataSet)HttpRuntime.Cache["SliderImages"];
 
             }
 
-            CareersData viewModel = new CareersData(); // ViewModel object
+            if (HttpRuntime.Cache["Positions"] == null)
+            {
+
+                dsPositions.ReadXml(xmlPositions);
+                HttpRuntime.Cache.Insert("Positions", dsPositions, new CacheDependency(xmlPositions), DateTime.Now.AddSeconds(60), System.Web.Caching.Cache.NoSlidingExpiration);
+            }
+            else
+            {
+
+                dsPositions = (DataSet)HttpRuntime.Cache["Positions"];
+           }
+
             viewModel.TeamPlayers = (from rows in dsTeamPlayers.Tables[0].AsEnumerable() //Fetch the records from the dataset teamplayers
                            select new TeamPlayers
                            {
