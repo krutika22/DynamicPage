@@ -1,2 +1,2 @@
-# DynamicPage 
+# Dynamic Page 
 
