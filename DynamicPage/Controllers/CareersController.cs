@@ -26,7 +26,7 @@ namespace DynamicPage.Controllers
 
 
             DataSet dsPositions = new DataSet();//Using dataset to read Positions xml file 
-            string xmlPositions = Server.MapPath("~/App_Data/Positions.xml");//Path of the xml script
+            string xmlPositions = Server.MapPath("~/App_Data/Positions.xml");//Path of the xml 
 
 
             // If the cache is empty read data from xml file and insert it into the cache else retrieve it from the cache
